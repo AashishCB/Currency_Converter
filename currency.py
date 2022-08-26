@@ -1,6 +1,7 @@
 import sys
 from frankfurter import Frankfurter
 
+
 class CurrencyConverter:
     """
     Class that represents a Currency conversion object. It will be used to store the input arguments (currency codes, date) and also other information required (amount, rate, inverse rate, instantiation of Frankfurter class).
@@ -23,7 +24,9 @@ class CurrencyConverter:
         Instance of Frankfurter class
     """
     def __init__(self, from_currency, to_currency, date):
-        pass
+        self.from_currency = from_currency
+        self.to_currency = to_currency
+        self.date = date
 
     def check_currencies(self):
         """
@@ -32,17 +35,27 @@ class CurrencyConverter:
 
         Parameters
         ----------
-        # => To be filled 
+        self : CurrencyConverter
+            An object of CurrencyConverter class
 
         Pseudo-code
         ----------
-        # => To be filled 
-
-        Returns
-        -------
-        # => To be filled 
+        Instantiate an objet from your defined Frankfurter class
+        Check the validity of the 2 currency codes (using your defined check_currency() method from Frankfurter class)
         """
-        # => To be filled 
+        frankfurter = Frankfurter()
+        valid_from_currency = frankfurter.check_currency(self.from_currency)
+        valid_to_currency = frankfurter.check_currency(self.to_currency)
+
+        if not (valid_from_currency or valid_to_currency):
+            print(F"{self.from_currency} and {self.to_currency} are not valid currency codes")
+            exit()
+        elif not valid_from_currency:
+            print(F"{self.from_currency} is not a valid currency code")
+            exit()
+        elif not valid_to_currency:
+            print(F"{self.to_currency} is not a valid currency code")
+            exit()
 
     def reverse_rate(self):
         """

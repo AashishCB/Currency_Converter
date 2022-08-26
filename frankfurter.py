@@ -18,7 +18,9 @@ class Frankfurter:
     """
 
     def __init__(self):
-        pass
+        self.base_url = "https://api.frankfurter.app"
+        self.currencies_url = F"{self.base_url}/currencies"
+        self.currencies = self.get_currencies_list()
 
     def get_currencies_list(self):
         """
@@ -26,18 +28,24 @@ class Frankfurter:
 
         Parameters
         ----------
-        # => To be filled 
+        self : Frankfurter
+            An object from Frankfurter class
 
         Pseudo-code
         ----------
-        # => To be filled 
+        Call the currencies endpoint and store the response
+        Extract json data
+        Store the currency codes from json data to currencies
 
         Returns
         -------
-        # => To be filled 
+        currencies => list
+             List of available currency codes
         """
-
-        # => To be filled 
+        response = call_get(self.currencies_url)
+        data = response.json()
+        currencies = data.keys()
+        return currencies
 
     def check_currency(self, currency):
         """
@@ -46,18 +54,18 @@ class Frankfurter:
 
         Parameters
         ----------
-        # => To be filled 
+        currency : str
+            Code for the currency
 
         Pseudo-code
         ----------
-        # => To be filled 
+        Search if currency is in the currencies_list
 
         Returns
         -------
-        # => To be filled 
+        True : bool
         """
-
-        # => To be filled 
+        return True if currency in self.currencies else False
 
     def get_historical_rate(self, from_currency, to_currency, from_date, amount=1):
         """
