@@ -17,4 +17,5 @@ if __name__ == "__main__":
     Extract the historical rate and calculate its inverse rate (using your defined get_historical_rate() method from CurrencyConverter class)
     """
 
-    # => To be filled 
+    args = sys.argv
+    args.pop(0)
