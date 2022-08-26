@@ -35,14 +35,19 @@ def check_date(date):
 
     Parameters
     ----------
-    # => To be filled
+    date : str
 
     Pseudo-code
     ----------
-    # => To be filled
+    Convert the given date string to datetime using strptime() function
 
     Returns
     -------
-    # => To be filled
+    True : bool
     """
-    # => To be filled
+    try:
+        datetime.datetime.strptime(date, "%Y-%m-%d")
+        return True
+    except ValueError as e:
+        print("Provided date is invalid")
+        exit()
