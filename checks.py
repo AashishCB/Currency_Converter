@@ -1,6 +1,7 @@
 import datetime
 import sys
 
+
 def check_arguments(args):
     """
     Function that will check if there are enough input arguments provided (ie exactly 3) and will return the input arguments if it is the case.
@@ -8,18 +9,24 @@ def check_arguments(args):
 
     Parameters
     ----------
-    # => To be filled
+    args : list
+        List containing a date and two currency codes
 
     Pseudo-code
     ----------
-    # => To be filled
+    Check there are 3 items in the input argument
 
     Returns
     -------
-    # => To be filled
+    args : list
+        List containing a date and two currency codes
     """
 
-    # => To be filled
+    if len(args) != 3:
+        print("[ERROR] You need to provide 3 arguments in the following order: <date> <currency1> <currency2>")
+        exit()
+    return args
+
 
 def check_date(date):
     """

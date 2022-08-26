@@ -19,3 +19,4 @@ if __name__ == "__main__":
 
     args = sys.argv
     args.pop(0)
+    date, currency_1, currency_2 = check_arguments(args)
