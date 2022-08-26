@@ -19,5 +19,7 @@ if __name__ == "__main__":
 
     args = sys.argv
     args.pop(0)
-    date, currency_1, currency_2 = check_arguments(args)
+    date, from_currency, to_currency = check_arguments(args)
     check_date(date)
+    currency_converter = CurrencyConverter(from_currency, to_currency, date)
+    currency_converter.check_currencies()

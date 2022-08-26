@@ -1,6 +1,8 @@
 import requests
 import sys
 
+from requests import HTTPError
+
 
 def call_get(url: str) -> requests.models.Response:
     """
@@ -9,15 +11,20 @@ def call_get(url: str) -> requests.models.Response:
 
     Parameters
     ----------
-    # => To be filled by student
+    url : str
 
     Pseudo-code
     ----------
-    # => To be filled by student
+    Make the relevant api call
 
     Returns
     -------
-    # => To be filled by student
+    response : requests.models.Response
     """
-
-    # => To be filled by student
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return response
+    except HTTPError as e:
+        print("There is an error with Frankfurter API")
+        exit()
