@@ -20,6 +20,7 @@ class Frankfurter:
     def __init__(self):
         self.base_url = "https://api.frankfurter.app"
         self.currencies_url = F"{self.base_url}/currencies"
+        self.historical_url = ""
         self.currencies = self.get_currencies_list()
 
     def get_currencies_list(self):
@@ -73,15 +74,26 @@ class Frankfurter:
 
         Parameters
         ----------
-        # => To be filled 
+        from_currency : str
+            Code for the origin currency
+        to_currency : str
+            Code for the destination currency
+        from_date : str
+            Date when the conversion rate was recorded
+        amount : int
+            Optional parameter with default value 1
 
         Pseudo-code
         ----------
-        # => To be filled 
+        Call the currencies endpoint and store the response
+        Extract json data
+        Fetch the destination currency conversion rate from json
 
         Returns
         -------
-        # => To be filled 
+        rate : float
         """
-
-        # => To be filled 
+        self.historical_url = F"{self.base_url}/{from_date}?from={from_currency}&to={to_currency}"
+        response = call_get(self.historical_url)
+        response_data = response.json()
+        return response_data['rates'][to_currency]

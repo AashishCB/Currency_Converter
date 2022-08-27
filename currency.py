@@ -26,7 +26,11 @@ class CurrencyConverter:
     def __init__(self, from_currency, to_currency, date):
         self.from_currency = from_currency
         self.to_currency = to_currency
+        self.amount = float()
+        self.rate = float()
+        self.inverse_rate = float()
         self.date = date
+        self.api = Frankfurter()
 
     def check_currencies(self):
         """
@@ -43,9 +47,8 @@ class CurrencyConverter:
         Instantiate an objet from your defined Frankfurter class
         Check the validity of the 2 currency codes (using your defined check_currency() method from Frankfurter class)
         """
-        frankfurter = Frankfurter()
-        valid_from_currency = frankfurter.check_currency(self.from_currency)
-        valid_to_currency = frankfurter.check_currency(self.to_currency)
+        valid_from_currency = self.api.check_currency(self.from_currency)
+        valid_to_currency = self.api.check_currency(self.to_currency)
 
         if not (valid_from_currency or valid_to_currency):
             print(F"{self.from_currency} and {self.to_currency} are not valid currency codes")
@@ -63,17 +66,17 @@ class CurrencyConverter:
 
         Parameters
         ----------
-        # => To be filled 
+        self : CurrencyConverter
+            An object of CurrencyConverter class
 
         Pseudo-code
         ----------
-        # => To be filled 
-
-        Returns
-        -------
-        # => To be filled 
+        Inverse the number with reciprocal way
+        Round it off to four decimal places
+        Store in the class attribute self.inverse_rate
         """
-        # => To be filled 
+        inverse_rate = 1.0/self.rate
+        self.inverse_rate = self.round_rate(inverse_rate)
 
     def round_rate(self, rate):
         """
@@ -81,18 +84,19 @@ class CurrencyConverter:
 
         Parameters
         ----------
-        # => To be filled 
+        rate : float
+            The conversion rate to be applied to a couple of currency codes
 
         Pseudo-code
         ----------
-        # => To be filled 
+        Round off rate to 4 decimal places(using built-in round())
 
         Returns
         -------
-        # => To be filled 
+        rounded_rate : float
         """
-
-        # => To be filled 
+        rounded_rate = round(rate, 4)
+        return rounded_rate
 
     def get_historical_rate(self):
         """
@@ -101,15 +105,21 @@ class CurrencyConverter:
 
         Parameters
         ----------
-        # => To be filled 
+        self : CurrencyConverter
+            An object of CurrencyConverter class.
 
         Pseudo-code
         ----------
-        # => To be filled 
+        Extract the historical rate(using self.api.get_historical_rate() of Frankfurter class)
+        Round up to 4 decimal places(using self.round_rate())
+        Fetch the inverse rate(using self.reverse_rate())
 
         Returns
         -------
-        # => To be filled 
+        rate : float
         """
-
-        # => To be filled 
+        historical_rate = self.api.get_historical_rate(self.from_currency, self.to_currency, self.date)
+        self.rate = self.round_rate(historical_rate)
+        self.reverse_rate()
+        print(F"The conversion rate on {self.date} from {self.from_currency} to {self.to_currency} was {self.rate}."
+              F"The inverse rate was {self.inverse_rate}")

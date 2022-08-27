@@ -23,3 +23,4 @@ if __name__ == "__main__":
     check_date(date)
     currency_converter = CurrencyConverter(from_currency, to_currency, date)
     currency_converter.check_currencies()
+    currency_converter.get_historical_rate()
