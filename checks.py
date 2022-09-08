@@ -5,7 +5,7 @@ import sys
 def check_arguments(args):
     """
     Function that will check if there are enough input arguments provided (ie exactly 3) and will return the input arguments if it is the case.
-    Otherwise the program will exit and display the relevant message provided in the assignment brief
+    Otherwise, the program will exit and display the relevant message provided in the assignment brief
 
     Parameters
     ----------
@@ -22,16 +22,15 @@ def check_arguments(args):
         List containing a date and two currency codes
     """
 
-    if len(args) != 3:
-        print("[ERROR] You need to provide 3 arguments in the following order: <date> <currency1> <currency2>")
-        exit()
-    return args
+    if len(args) == 3:
+        return args
+    print("[ERROR] You need to provide 3 arguments in the following order: <date> <currency1> <currency2>")
 
 
 def check_date(date):
     """
     Function that will check if the provided date is valid and will return the value True if that is the case.
-    Otherwise the program will exit and display the relevant message provided in the assignment brief
+    Otherwise, the program will exit and display the relevant message provided in the assignment brief
 
     Parameters
     ----------
@@ -50,4 +49,3 @@ def check_date(date):
         return True
     except ValueError as e:
         print("Provided date is invalid")
-        exit()
