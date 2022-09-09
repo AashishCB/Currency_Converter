@@ -113,10 +113,6 @@ class CurrencyConverter:
         Extract the historical rate(using self.api.get_historical_rate() of Frankfurter class)
         Round up to 4 decimal places(using self.round_rate())
         Fetch the inverse rate(using self.reverse_rate())
-
-        Returns
-        -------
-        rate : float
         """
         historical_rate = self.api.get_historical_rate(self.from_currency, self.to_currency, self.date)
         self.rate = self.round_rate(historical_rate)
