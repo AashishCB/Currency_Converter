@@ -1,9 +1,5 @@
 # Currency Converter
 
-## Author
-Name: Aibarna Singh Basnet
-
-Student ID: 24585717 
 
 ## Description
 ### What your application does
